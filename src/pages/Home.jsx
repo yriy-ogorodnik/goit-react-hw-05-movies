@@ -50,8 +50,7 @@ const Home = () => {
                   </div>
                 </div>
 
-                {/* {original_title || name}
-                  {<img src={`https://image.tmdb.org/t/p/w300${poster_path}`} alt=""/>} */}
+                
               </Link>
             </li>
           )
