@@ -7,6 +7,8 @@ const Home = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  // const location = useLocation();
+
 
   const getTrendingMovies = async () => {
     setIsLoading(true);

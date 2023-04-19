@@ -1,13 +1,18 @@
-import { Link, Outlet, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
+import { useEffect, useState , useRef} from 'react';
 import { fetchMovieDetails } from 'components/Api';
 import styled from 'styled-components';
+import { BackLink } from 'components/Backlink';
 
 const MovieDetails = () => {
   //params
   const { movieId } = useParams();
-
+ 
   const [movie, setMovie] = useState({});
+  const location = useLocation();
+ 
+  // const backLinkHref = location.state?.from ?? "/";
+  const backLinkHref = useRef(location.state?.from ?? '/');
   
 
   const getMovieDetails = async id => {
@@ -40,6 +45,7 @@ const MovieDetails = () => {
   const getYear = new Date(release_date).getFullYear();
   return (
     <>
+    <BackLink  to={backLinkHref.current}>Back to products</BackLink>
       <StyleWraper>
         <img
           src={`https://image.tmdb.org/t/p/w400${poster_path}`}

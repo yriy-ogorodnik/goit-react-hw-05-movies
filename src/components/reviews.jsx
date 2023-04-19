@@ -6,6 +6,7 @@ const Reviews = () => {
   const [reviews, setReviews] = useState([]);
 
   const { movieId } = useParams();
+  const [error, setError] = useState(null);
 
   const getMovieReviews = async id => {
     try {
@@ -16,9 +17,14 @@ const Reviews = () => {
         author,
         content,
       }));
+      if (!results.length) {
+        console.log('dddd')
+        throw new Error(`We don't have any reviews for this movie :(`);
+      }
 
       setReviews(resultArr);
     } catch (error) {
+      setError(error);
     } finally {
     }
   };
@@ -32,6 +38,7 @@ const Reviews = () => {
 
   return (
     <div>
+       {error && <p>{error.message}</p>}
       {reviews.map(review => (
         <div key={review.id}>
           <h2>{review.author}</h2>

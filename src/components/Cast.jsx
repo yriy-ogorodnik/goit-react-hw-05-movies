@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchMovieCast } from 'components/Api';
+import placeholder from 'images/placeholder.png';
 
 const MovieCast = () => {
   const [cast, setCast] = useState([]);
@@ -31,7 +32,11 @@ const MovieCast = () => {
         <li key={id}>
           <div>
             <img
-              src={`https://image.tmdb.org/t/p/w300/${profile_path}`}
+              src={
+                profile_path
+                  ? `https://image.tmdb.org/t/p/w300/${profile_path}`
+                  : `${placeholder}`
+              }
               alt={actorName}
               width="300"
               loading="lazy"
