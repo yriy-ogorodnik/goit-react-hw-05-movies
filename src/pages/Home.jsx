@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import HomeCSS from './home.module.css';
-import { fetchTrendingMovies } from 'components/Api';
+import { fetchTrendingMovies } from 'Api/Api';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
@@ -8,7 +8,6 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   // const location = useLocation();
-
 
   const getTrendingMovies = async () => {
     setIsLoading(true);
@@ -51,8 +50,6 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-
-                
               </Link>
             </li>
           )

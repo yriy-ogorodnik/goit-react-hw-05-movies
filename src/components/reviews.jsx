@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { fetchMovieReviews } from 'components/Api';
+import { fetchMovieReviews } from 'Api/Api';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -18,7 +18,7 @@ const Reviews = () => {
         content,
       }));
       if (!results.length) {
-        console.log('dddd')
+        console.log('dddd');
         throw new Error(`We don't have any reviews for this movie :(`);
       }
 
@@ -38,7 +38,7 @@ const Reviews = () => {
 
   return (
     <div>
-       {error && <p>{error.message}</p>}
+      {error && <p>{error.message}</p>}
       {reviews.map(review => (
         <div key={review.id}>
           <h2>{review.author}</h2>

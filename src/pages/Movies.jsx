@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { fetchMovieSearch } from 'components/Api';
+import { fetchMovieSearch } from 'Api/Api';
 import HomeCSS from './home.module.css';
 
 const Movies = () => {
@@ -66,7 +66,10 @@ const Movies = () => {
         {movies.map(
           ({ poster_path, original_title, name, id, vote_average }) => (
             <li key={id}>
-              <Link to={`/movies/${id}`} state={{ from: `/movies?filter=${filter}`}}>
+              <Link
+                to={`/movies/${id}`}
+                state={{ from: `/movies?filter=${filter}` }}
+              >
                 <div>
                   <div className={HomeCSS.movie__cover__inner}>
                     <img

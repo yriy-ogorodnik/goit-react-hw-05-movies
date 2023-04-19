@@ -1,10 +1,20 @@
+import { lazy, Suspense } from 'react';
 import styled from 'styled-components';
 import { NavLink, Routes, Route } from 'react-router-dom';
-import Movies from 'pages/Movies';
-import Home from 'pages/Home';
-import MovieDetails from 'pages/MovieDetails';
-import Cast from 'components/Cast';
-import Reviews from './reviews';
+// import Movies from 'pages/Movies';
+// import Home from 'pages/Home';
+// import MovieDetails from 'pages/MovieDetails';
+// import NotFound from 'pages/NotFound';
+// import Cast from 'components/Cast';
+// import Reviews from './reviews';
+
+const Home = lazy(() => import('pages/Home'));
+const Movies = lazy(() => import('pages/Movies'));
+const MovieDetails = lazy(() => import('pages/MovieDetails'));
+const NotFound = lazy(() => import('pages/NotFound'));
+
+const Cast = lazy(() => import('components/Cast'));
+const Reviews = lazy(() => import('./reviews'));
 
 export const App = () => {
   return (
@@ -22,14 +32,17 @@ export const App = () => {
             </ul>
           </nav>
         </StyledHeader>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/movies" element={<Movies />} />
-          <Route path="movies/:movieId" element={<MovieDetails />}>
-            <Route path="cast" element={<Cast />} />
-            <Route path="reviews" element={<Reviews />} />
-          </Route>
-        </Routes>
+        <Suspense fallback={<h1>Loading...</h1>}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/movies" element={<Movies />} />
+            <Route path="movies/:movieId" element={<MovieDetails />}>
+              <Route path="cast" element={<Cast />} />
+              <Route path="reviews" element={<Reviews />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </StyledContainer>
     </div>
   );

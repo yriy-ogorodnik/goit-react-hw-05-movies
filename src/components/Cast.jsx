@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { fetchMovieCast } from 'components/Api';
+import { fetchMovieCast } from 'Api/Api';
 import placeholder from 'images/placeholder.png';
 
 const MovieCast = () => {
